@@ -180,6 +180,16 @@ def subject_real_time_hotest():
         print(e)
     return []
 
+def douban_search(name):
+    try:
+        res = miniapp_request("/search/movie", {
+            "q": name,
+            "count": count
+        })
+        return res
+    except Exception as e:
+        print(e)
+    return []
 
 def douban_detail(ids):
     try:

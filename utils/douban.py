@@ -18,6 +18,7 @@ count = 30
 def miniapp_request(path, query):
     try:
         url = f'{douban_api_host}{path}'
+        prnt(url)
         query.update({
             'apikey': miniapp_apikey
         })
@@ -136,7 +137,7 @@ def cate_filter(type, ext, pg, douban):
             "limit": count,
             "total": res["total"]
         }
-        if type == "tv_hot" or type == "show_hot" or type.startswith("rank_list"):
+        if type == "tv_hot" or type == "hot_gaia" or type == "show_hot" or type.startswith("rank_list"):
             items = res['subject_collection_items']
         elif type == "interests":
             items = []

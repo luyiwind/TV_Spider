@@ -217,7 +217,7 @@ def douban_detail(ids):
 
 if __name__ == '__main__':
     # res = cate_filter("movie", "eyLnsbvlnosiOiLllpzliacifQ==", "1")
-    res = cate_filter("hot_gaia", "", "1")
+    res = cate_filter("hot_gaia", "", "1", "")
     # res = douban_detail("movie__35131346")
     #res = subject_real_time_hotest()
     # res = douban_search("海底小纵队")

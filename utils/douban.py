@@ -159,6 +159,9 @@ def subject_real_time_hotest():
     try:
         res = miniapp_request("/subject_collection/subject_real_time_hotest/items", {})
         print(res)
+        if ("subject_collection_items" not in res):
+            res = miniapp_request("/subject_collection/movie_real_time_hotest/items", {})
+            print(res)
         lists = []
         for item in res["subject_collection_items"]:
             if item.get("type", "") == "movie" or item.get("type", "") == "tv":

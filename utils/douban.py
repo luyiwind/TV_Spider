@@ -10,7 +10,7 @@ import base64
 urllib3.util.timeout.Timeout._validate_timeout = lambda *args: 5 if args[2] != 'total' else None
 
 
-douban_api_host = 'https://m.douban.com/rexxar/api/v2'
+douban_api_host = 'https://frodo.douban.com/api/v2'
 miniapp_apikey = '0ac44ae016490db2204ce0a042db2916'
 count = 30
 
@@ -18,13 +18,13 @@ count = 30
 def miniapp_request(path, query):
     try:
         url = f'{douban_api_host}{path}'
-        print(url)
         query.update({
             'apikey': miniapp_apikey
         })
         headers = {
+            "Host": "frodo.douban.com",
             "Connection": "Keep-Alive",
-            "Referer": "https://m.douban.com/subject_collection/movie_hot_gaia",
+            "Referer": "https://servicewechat.com/wx2f9b06c1de1ccfca/84/page-frame.html",
             "content-type": "application/json",
             "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36 MicroMessenger/7.0.9.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat"
         }
@@ -60,14 +60,13 @@ def cate_filter(type, ext, pg, douban):
                 data = json.loads(base64.b64decode(ext).decode("utf-8"))
             sort = data.get("sort", "recommend")
             area = data.get("area", "全部")
-            path = f"/subject_collection/movie_{type}/item"
+            path = f"/movie/{type}"
             res = miniapp_request(path, {
                 "area": area,
                 "sort": sort,
                 "start": (int(pg) - 1) * count,
                 "count": count
             })
-            print(res)
         elif type == "tv_hot" or type == "show_hot":
             data = {}
             if ext:
@@ -137,7 +136,7 @@ def cate_filter(type, ext, pg, douban):
             "limit": count,
             "total": res["total"]
         }
-        if type == "tv_hot" or type == "hot_gaia" or type == "show_hot" or type.startswith("rank_list"):
+        if type == "tv_hot" or type == "show_hot" or type.startswith("rank_list"):
             items = res['subject_collection_items']
         elif type == "interests":
             items = []
@@ -218,8 +217,8 @@ def douban_detail(ids):
 
 if __name__ == '__main__':
     # res = cate_filter("movie", "eyLnsbvlnosiOiLllpzliacifQ==", "1")
-    res = cate_filter("hot_gaia", "", "1", "")
+    # res = cate_filter("rank_list_movie", "", "1")
     # res = douban_detail("movie__35131346")
-    #res = subject_real_time_hotest()
+     res = subject_real_time_hotest()
     # res = douban_search("海底小纵队")
     print(res)

@@ -10,7 +10,7 @@ import base64
 urllib3.util.timeout.Timeout._validate_timeout = lambda *args: 5 if args[2] != 'total' else None
 
 
-douban_api_host = 'https://frodo.douban.com/api/v2'
+douban_api_host = 'https://m.douban.com/rexxar/api/v2'
 miniapp_apikey = '0ac44ae016490db2204ce0a042db2916'
 count = 30
 
@@ -60,7 +60,7 @@ def cate_filter(type, ext, pg, douban):
                 data = json.loads(base64.b64decode(ext).decode("utf-8"))
             sort = data.get("sort", "recommend")
             area = data.get("area", "全部")
-            path = f"/movie/{type}"
+            path = f"/subject_collection/movie_{type}/item"
             res = miniapp_request(path, {
                 "area": area,
                 "sort": sort,
@@ -217,8 +217,8 @@ def douban_detail(ids):
 
 if __name__ == '__main__':
     # res = cate_filter("movie", "eyLnsbvlnosiOiLllpzliacifQ==", "1")
-    # res = cate_filter("rank_list_movie", "", "1")
+    res = cate_filter("hot_gaia", "", "1")
     # res = douban_detail("movie__35131346")
-     res = subject_real_time_hotest()
+    #res = subject_real_time_hotest()
     # res = douban_search("海底小纵队")
     print(res)

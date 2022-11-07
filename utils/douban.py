@@ -10,37 +10,16 @@ import base64
 urllib3.util.timeout.Timeout._validate_timeout = lambda *args: 5 if args[2] != 'total' else None
 
 
-douban_api_host = 'https://frodo.douban.com/api/v2'
-miniapp_apikey = '0ac44ae016490db2204ce0a042db2916'
+douban_api_host = 'https://m.douban.com/rexxar/api/v2'
 count = 30
 
 
 def miniapp_request(path, query):
     try:
         url = f'{douban_api_host}{path}'
-        query.update({
-            'apikey': miniapp_apikey
-        })
-        headers = {
-            "Host": "frodo.douban.com",
-            "Connection": "Keep-Alive",
-            "Referer": "https://servicewechat.com/wx2f9b06c1de1ccfca/84/page-frame.html",
-            "content-type": "application/json",
-            "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36 MicroMessenger/7.0.9.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat"
-        }
-        res = requests.get(url=url, params=query, headers=headers)
-        res.encoding = res.apparent_encoding
-        return res.json()
-    except Exception as e:
-        print(e)
-    return {}
-
-def miniapp_test(path, query):
-    try:
-        url = f'https://m.douban.com/rexxar/api/v2{path}'
         print(url)
         headers = {
-            "Referer": "https://m.douban.com/subject_collection/subject_real_time_hotest",
+            "Referer": url.repalce("/rexxar/api/v2","").replace("/items",""),
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
         }
         res = requests.get(url=url, params=query, headers=headers)
@@ -178,7 +157,7 @@ def cate_filter(type, ext, pg, douban):
 
 def subject_real_time_hotest():
     try:
-        res = miniapp_test("/subject_collection/subject_real_time_hotest/items", {})
+        res = miniapp_request("/subject_collection/subject_real_time_hotest/items", {})
         print(res)
         lists = []
         for item in res["subject_collection_items"]:

@@ -23,7 +23,6 @@ def miniapp_request(path, query):
             'apikey': miniapp_apikey
         })
         headers = {
-            "Host": "frodo.douban.com",
             "Connection": "Keep-Alive",
             "Referer": "https://m.douban.com/subject_collection/movie_hot_gaia",
             "content-type": "application/json",

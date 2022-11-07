@@ -18,7 +18,7 @@ count = 30
 def miniapp_request(path, query):
     try:
         url = f'{douban_api_host}{path}'
-        prnt(url)
+        print(url)
         query.update({
             'apikey': miniapp_apikey
         })
@@ -68,6 +68,7 @@ def cate_filter(type, ext, pg, douban):
                 "start": (int(pg) - 1) * count,
                 "count": count
             })
+            print(res)
         elif type == "tv_hot" or type == "show_hot":
             data = {}
             if ext:

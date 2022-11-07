@@ -19,7 +19,7 @@ def miniapp_request(path, query):
         url = f'{douban_api_host}{path}'
         print(url)
         headers = {
-            "Referer": url.repalce("/rexxar/api/v2","").replace("/items",""),
+            "Referer": url.replace("/rexxar/api/v2","").replace("/items",""),
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
         }
         res = requests.get(url=url, params=query, headers=headers)

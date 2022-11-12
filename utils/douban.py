@@ -146,8 +146,9 @@ def cate_filter(type, ext, pg, douban):
                 lists.append({
                     "vod_id": f'msearch:{item.get("type", "")}__{item.get("id", "")}',
                     "vod_name": title if title != "未知电影" else "暂不支持展示",
+                    "vod_lang": (info + " ") if info else "",
                     "vod_pic": item.get("pic", "").get("normal", ""),
-                    "vod_remarks": str(rating if rating else "暂无评分") + " " + ((info + " ") if info else "") + " | ".join(honor["title"] for honor in item.get("honor_infos", []))
+                    "vod_remarks": str(rating if rating else "暂无评分") + " " + " | ".join(honor["title"] for honor in item.get("honor_infos", []))
                 })
         result.setdefault("list", lists)
         return result
@@ -171,8 +172,9 @@ def subject_real_time_hotest():
                 lists.append({
                     "vod_id": f'msearch:{item.get("type", "")}__{item.get("id", "")}',
                     "vod_name": item.get("title", ""),
+                    "vod_lang": (info + " ") if info else "",
                     "vod_pic": item.get("pic", "").get("normal", ""),
-                    "vod_remarks": str(rating if rating else "暂无评分") + " " + ((info + " ") if info else "") + " | ".join(honor["title"] for honor in item.get("honor_infos", []))
+                    "vod_remarks": str(rating if rating else "暂无评分") + " " + " | ".join(honor["title"] for honor in item.get("honor_infos", []))
                 })
         return lists
     except Exception as e:

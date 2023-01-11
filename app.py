@@ -21,7 +21,7 @@ cache = Cache(app=app, config=redis_config)
 # cache.clear()
 
 site_list = [
-    # "bdys01",
+    "bdys01",
     "bttwoo",
     "cokemv",
     "czspp",

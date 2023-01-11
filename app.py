@@ -11,6 +11,7 @@ import json
 app = Flask(__name__)
 cors = CORS(app)
 
+
 site_list = [
     "bdys01",
     "bttwoo",
@@ -116,6 +117,7 @@ def vod():
         if play and flag:
             playerContent = eval(f"{play.split('___')[0]}.playerContent")(play, flag, ali_token)
             return playerContent
+
 
         douban_filter["list"] = douban.subject_real_time_hotest()
         return jsonify(douban_filter)

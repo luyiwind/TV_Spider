@@ -156,6 +156,7 @@ def cate_filter(type, ext, pg, douban):
         print(e)
     return {}
 
+
 def subject_real_time_hotest():
     try:
         res = miniapp_request("/subject_collection/subject_real_time_hotest/items", {})

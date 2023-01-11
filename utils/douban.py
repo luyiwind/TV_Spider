@@ -156,12 +156,8 @@ def cate_filter(type, ext, pg, douban):
         print(e)
     return {}
 
-recordRealTimeList = []
-
 def subject_real_time_hotest():
     try:
-        if len(recordRealTimeList):
-            return recordRealTimeList
         res = miniapp_request("/subject_collection/subject_real_time_hotest/items", {})
         print(res)
         if ("subject_collection_items" not in res):

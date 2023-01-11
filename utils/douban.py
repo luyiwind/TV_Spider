@@ -175,7 +175,6 @@ def subject_real_time_hotest():
                     "vod_pic": item.get("pic", "").get("normal", ""),
                     "vod_remarks": str(rating if rating else "暂无评分") + " " + " | ".join(honor["title"] for honor in item.get("honor_infos", []))
                 })
-        recordRealTimeList = lists
         return lists
     except Exception as e:
         print(e)

@@ -117,8 +117,7 @@ def vod():
             playerContent = eval(f"{play.split('___')[0]}.playerContent")(play, flag, ali_token)
             return playerContent
 
-        recordRealTimeList = douban.subject_real_time_hotest()
-        douban_filter["list"] = recordRealTimeList
+        douban_filter["list"] = douban.subject_real_time_hotest()
         return jsonify(douban_filter)
 
         # return jsonify({

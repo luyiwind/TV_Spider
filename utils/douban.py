@@ -196,6 +196,7 @@ def douban_detail(ids):
     try:
         id = ids.split(":")[-1].split("__")
         res = miniapp_request(f"/{id[0]}/{id[1]}", {})
+        print(res)
         vodList = {
             "vod_id": ids,
             "vod_name": res.get("title", ""),
@@ -209,7 +210,7 @@ def douban_detail(ids):
             "vod_content": res.get("intro", ""),
             "vod_play_from": "本页面数据来自豆瓣$$$观看影片请点击上方快速搜索$$$或升级至最新版软件",
             "vod_play_url": "$$$"
-        }
+        } 
         return [vodList]
     except Exception as e:
         print(e)
@@ -219,7 +220,7 @@ def douban_detail(ids):
 if __name__ == '__main__':
     #res = cate_filter("hot_gaia", "", "1", "")
     #res = cate_filter("rank_list_movie", "", "1")
-    #res = douban_detail("movie__35131346")
-    res = subject_real_time_hotest()
+    res = douban_detail("tv__35284451")
+    #res = subject_real_time_hotest()
     #res = douban_search("海底小纵队")
     print(res)
